@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import {v4 as uuid} from "uuid";
+import { User } from "./user.entity";
 
 @Entity("notes")
 export class Note{
@@ -14,6 +15,10 @@ export class Note{
 
     @CreateDateColumn()
     createdAt: Date;
+
+    @ManyToOne(() => User, {eager: true})
+    @JoinColumn()
+    user: User;
 
     constructor(){
         if(!this.id){
