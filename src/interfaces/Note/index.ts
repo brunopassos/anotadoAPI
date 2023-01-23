@@ -8,3 +8,8 @@ export interface INoteCreate {
     content: string;
     createdAt: Date;
 }
+
+export interface INoteUpdate {
+    title?: string;
+    content?: string;
+}

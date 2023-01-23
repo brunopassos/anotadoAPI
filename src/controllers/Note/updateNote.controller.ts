@@ -10,7 +10,7 @@ const updateNoteController = async (req: Request, res: Response) => {
         const note = await updateNoteService({title, content}, id);
 
         return res.status(200).json({data: {
-            message: "Note updated succesfully",
+            message: "Note updated successfully",
             note
         }});
     } catch (error) {

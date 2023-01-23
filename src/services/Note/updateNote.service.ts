@@ -1,8 +1,8 @@
 import { AppDataSource } from "../../data-source";
 import { Note } from "../../entities/note.entity";
-import { INoteCreate, INote } from "../../interfaces/Note";
+import { INoteCreate, INote, INoteUpdate } from "../../interfaces/Note";
 
-const updateNoteService = async ({title,content}:INote, id:string) => {
+const updateNoteService = async ({title,content}:INote, id:string): Promise<INoteUpdate> => {
     const noteRepository = AppDataSource.getRepository(Note);
 
     const note = await noteRepository.findOne({where: { id : id }});
