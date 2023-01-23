@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
 import {v4 as uuid} from "uuid";
 
 @Entity("notes")
@@ -12,7 +12,7 @@ export class Note{
     @Column()
     content: string;
 
-    @Column({ type:"date"})
+    @CreateDateColumn()
     createdAt: Date;
 
     constructor(){
