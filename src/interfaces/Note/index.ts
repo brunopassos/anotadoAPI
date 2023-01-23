@@ -4,6 +4,7 @@ export interface INote{
 }
 
 export interface INoteCreate {
+    id: string;
     title?: string;
     content: string;
     createdAt: Date;
