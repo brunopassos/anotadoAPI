@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import { INote } from "../../interfaces/Note";
 import updateNoteService from "../../services/Note/updateNote.service";
 
@@ -14,7 +15,9 @@ const updateNoteController = async (req: Request, res: Response) => {
             note
         }});
     } catch (error) {
-        console.log(error)
+        if (error instanceof AppError) {
+            handleError(error, res)
+          }
     }
 }
 

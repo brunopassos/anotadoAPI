@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import deleteNoteService from "../../services/Note/deleteNote.service";
 
 const deleteNoteController = async (req: Request, res: Response) => {
@@ -9,7 +10,9 @@ const deleteNoteController = async (req: Request, res: Response) => {
             message: "Note deleted successfully.",
         }});
     } catch (error) {
-        console.log(error)
+        if (error instanceof AppError) {
+            handleError(error, res)
+          }
     }
 }
 

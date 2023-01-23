@@ -1,4 +1,5 @@
 import { Response, Request } from "express";
+import { AppError, handleError } from "../../errors/appError";
 import createNoteService from "../../services/Note/createNote.service";
 
 const createNoteController = async (req: Request, res: Response) => {
@@ -11,7 +12,9 @@ const createNoteController = async (req: Request, res: Response) => {
         }});
 
     } catch (error) {
-        console.log(error)
+        if (error instanceof AppError) {
+            handleError(error, res)
+          }
     }
 }
 
