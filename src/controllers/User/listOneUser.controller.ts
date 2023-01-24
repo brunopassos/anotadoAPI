@@ -5,9 +5,9 @@ import listOneUserService from "../../services/User/listOneUser.service";
 
 const listOneUserController = async (req: Request, res: Response) => {
     try {
-        const {id} = req.params;
+        const email = req.userEmail;
 
-        const user = await listOneUserService(id);
+        const user = await listOneUserService(email);
 
         return res.status(200).json(instanceToPlain({data: {
             message: "Success",
