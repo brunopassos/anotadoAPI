@@ -5,7 +5,8 @@ import listUserNotesService from "../../services/User/listUserNotes.service";
 
 const listUserNotesController = async (req: Request, res: Response) => {
     try {
-        const notes = await listUserNotesService({authorization:req.headers.authorization});
+        const email = req.userEmail;
+        const notes = await listUserNotesService(email);
 
         return res.status(200).json(instanceToPlain({data: {
             message: "Success",

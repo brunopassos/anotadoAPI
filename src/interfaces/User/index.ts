@@ -18,7 +18,3 @@ export interface IUserNotes{
     createdAt: Date;
     user: User;
 }
-
-export interface IUserListOne{
-    authorization?: string;
-}
