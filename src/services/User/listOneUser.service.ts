@@ -1,18 +1,16 @@
 import { AppDataSource } from "../../data-source";
-import { AppError } from "../../errors/appError";
 import { User } from "../../entities/user.entity";
-import { IUserCreate } from "../../interfaces/User";
 
-const listOneUserService = async (id: string): Promise<IUserCreate> => {
+const listOneUserService = async (email:string) => {
     const userRepository = AppDataSource.getRepository(User);
 
-    const user = await userRepository.findOne({where: {id:id}});
+    const users = await userRepository.find();
 
-    if(!user){
-        throw new AppError(404, "User not found");
-    }
+    const account = users.find(user => user.email === email);
 
-    return user;
+    console.log(account);
+
+    return account;
 }
 
 export default listOneUserService;

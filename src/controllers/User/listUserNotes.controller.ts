@@ -5,9 +5,7 @@ import listUserNotesService from "../../services/User/listUserNotes.service";
 
 const listUserNotesController = async (req: Request, res: Response) => {
     try {
-        const {id} = req.params;
-
-        const notes = await listUserNotesService(id);
+        const notes = await listUserNotesService({authorization:req.headers.authorization});
 
         return res.status(200).json(instanceToPlain({data: {
             message: "Success",
