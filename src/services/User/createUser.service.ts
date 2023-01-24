@@ -1,10 +1,10 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
-import { IUser } from "../../interfaces/User";
+import { IUser, IUserCreate } from "../../interfaces/User";
 import bcrypt from "bcrypt";
 
-const createUserService = async ({email, password}:IUser) => {
+const createUserService = async ({email, password}:IUser): Promise<IUserCreate> => {
     const userRepository = AppDataSource.getRepository(User);
 
     const user = await userRepository.findOne({where: { email: email}});
