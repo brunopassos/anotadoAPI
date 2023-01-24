@@ -18,3 +18,4 @@ export interface INoteUpdate {
     title?: string;
     content?: string;
 }
+

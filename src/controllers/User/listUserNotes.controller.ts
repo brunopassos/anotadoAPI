@@ -1,17 +1,17 @@
 import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
 import { AppError, handleError } from "../../errors/appError";
-import listOneUserService from "../../services/User/listOneUser.service";
+import listUserNotesService from "../../services/User/listUserNotes.service";
 
-const listOneUserController = async (req: Request, res: Response) => {
+const listUserNotesController = async (req: Request, res: Response) => {
     try {
         const {id} = req.params;
 
-        const user = await listOneUserService(id);
+        const notes = await listUserNotesService(id);
 
         return res.status(200).json(instanceToPlain({data: {
             message: "Success",
-            user
+            notes
         }}));
         
     } catch (error) {
@@ -21,4 +21,4 @@ const listOneUserController = async (req: Request, res: Response) => {
     }
 }
 
-export default listOneUserController;
+export default listUserNotesController;
