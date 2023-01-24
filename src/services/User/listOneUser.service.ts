@@ -8,8 +8,6 @@ const listOneUserService = async (email:string) => {
 
     const account = users.find(user => user.email === email);
 
-    console.log(account);
-
     return account;
 }
 
