@@ -16,7 +16,7 @@ export class Note{
     @CreateDateColumn()
     createdAt: Date;
 
-    @ManyToOne(() => User, {eager: true})
+    @ManyToOne(() => User, {eager: true, nullable: false})
     @JoinColumn()
     user: User;
 

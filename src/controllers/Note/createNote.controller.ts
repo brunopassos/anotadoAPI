@@ -4,8 +4,10 @@ import createNoteService from "../../services/Note/createNote.service";
 
 const createNoteController = async (req: Request, res: Response) => {
     try {
-        const { title, content } = req.body;
-        const note = await createNoteService({title, content});
+        const { title, content, user } = req.body;
+
+        const note = await createNoteService({title, content, user});
+        
         return res.status(201).json({data: {
             message: "New note created",
             note
