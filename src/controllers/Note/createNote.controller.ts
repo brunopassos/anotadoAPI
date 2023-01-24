@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { Response, Request } from "express";
 import { AppError, handleError } from "../../errors/appError";
 import createNoteService from "../../services/Note/createNote.service";
@@ -8,10 +9,10 @@ const createNoteController = async (req: Request, res: Response) => {
 
         const note = await createNoteService({title, content, user});
         
-        return res.status(201).json({data: {
+        return res.status(201).json(instanceToPlain({data: {
             message: "New note created",
             note
-        }});
+        }}));
 
     } catch (error) {
         if (error instanceof AppError) {
