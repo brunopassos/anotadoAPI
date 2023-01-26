@@ -5,6 +5,10 @@ export interface IUser {
     password: string;
 }
 
+export interface IUserGoogle {
+    email: string;
+}
+
 export interface IUserCreate {
     id: string;
     email: string;
