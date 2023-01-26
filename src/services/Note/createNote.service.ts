@@ -4,15 +4,12 @@ import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
 import { INote, INoteCreate } from "../../interfaces/Note";
 
-const createNoteService = async ({title, content, user}:INote):  Promise<INoteCreate> => {
+
+const createNoteService = async ({title, content}:INote, id:string):  Promise<INoteCreate> => {
     const noteRepository = AppDataSource.getRepository(Note);
     const userRepository = AppDataSource.getRepository(User);
 
-    if(!user){
-        throw new AppError(422, "Missing parameters")
-    }
-
-    const findUser = await userRepository.findOne({where: { id : user}});
+    const findUser = await userRepository.findOne({where: { id : id}});
 
     if(!findUser){
         throw new AppError(404, "User not found")
