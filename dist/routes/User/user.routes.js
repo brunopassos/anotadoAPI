@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const userRoutes = (0, express_1.Router)();
+const createUser_controller_1 = __importDefault(require("../../controllers/User/createUser.controller"));
+const createUserGoogle_controller_1 = __importDefault(require("../../controllers/User/createUserGoogle.controller"));
+const listOneUser_controller_1 = __importDefault(require("../../controllers/User/listOneUser.controller"));
+const listUserNotes_controller_1 = __importDefault(require("../../controllers/User/listUserNotes.controller"));
+const listUsers_controller_1 = __importDefault(require("../../controllers/User/listUsers.controller"));
+const userLogginGoogle_controller_1 = __importDefault(require("../../controllers/User/userLogginGoogle.controller"));
+const userLogin_controller_1 = __importDefault(require("../../controllers/User/userLogin.controller"));
+const authUser_middleware_1 = __importDefault(require("../../middlewares/authUser.middleware"));
+userRoutes.post("/user", createUser_controller_1.default);
+userRoutes.post("/userGoogle", createUserGoogle_controller_1.default);
+userRoutes.post("/user/login", userLogin_controller_1.default);
+userRoutes.post("/user/loginGoogle", userLogginGoogle_controller_1.default);
+userRoutes.get("/user/me", authUser_middleware_1.default, listOneUser_controller_1.default);
+userRoutes.get("/user", listUsers_controller_1.default);
+userRoutes.get("/user/notes/me", authUser_middleware_1.default, listUserNotes_controller_1.default);
+exports.default = userRoutes;
