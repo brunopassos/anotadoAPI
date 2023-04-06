@@ -8,10 +8,7 @@ const listUserNotesController = async (req: Request, res: Response) => {
         const email = req.userEmail;
         const notes = await listUserNotesService(email);
 
-        return res.status(200).json(instanceToPlain({data: {
-            message: "Success",
-            notes
-        }}));
+        return res.status(200).json(instanceToPlain(notes));
         
     } catch (error) {
         if(error instanceof AppError){

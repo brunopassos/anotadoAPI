@@ -16,10 +16,7 @@ const createNoteController = async (req: Request, res: Response) => {
 
         const note = await createNoteService({title, content}, id!);
         
-        return res.status(201).json(instanceToPlain({data: {
-            message: "New note created",
-            note
-        }}));
+        return res.status(201).json(instanceToPlain(note));
 
     } catch (error) {
         if (error instanceof AppError) {
